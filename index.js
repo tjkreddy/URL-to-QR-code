@@ -13,13 +13,13 @@ const port = 3000;
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", (req,res) => {
-  res.sendFile(__dirname + "/public/index.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
 app.post("/convert", (req,res) => {
     const url = req.body.URL;
     const qr_svg = qr.image(url, { type: 'png' });
-    const qrPath = __dirname + "/public/qr.png";
+    const qrPath = __dirname + "/qr.png";
     
     const writeStream = fs.createWriteStream(qrPath);
     qr_svg.pipe(writeStream);
